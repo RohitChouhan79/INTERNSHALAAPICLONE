@@ -17,7 +17,12 @@ const studentModel=new mongoose.Schema({
         maxLength:[15,"Password shhould not exceed more then 15 characters"],
         minLength:[6,"Password shhould have atleast  then 6 characters"],
         // match: 
+    },
+    resetPasswordToken:{
+        type:Number,
+        default:0
     }
+    
 },{timestamps:true})
 
 //npm i bcryptjs for bcrypt the password so no body can access
