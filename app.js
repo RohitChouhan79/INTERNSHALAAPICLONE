@@ -18,6 +18,20 @@ app.use(logger("tiny"))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
+// Session and cookies (npm i --save  express-session cookie-parser jsonwebtoken)
+const session=require("express-session");
+const cookieparser=require("cookie-parser")
+
+app.use(session({
+    resave:true,
+    saveUninitialized:true,
+    secret:process.env.EXPRESS_SESSION_SECRET
+}));
+
+// cookies activation : cookies is something that genrate a code in bakend me that code willl save in browser jb tk vo code(string browser me he) jb tk user login rahega us code ko apn chek krte he ki vo expire to ni hua
+
+app.use(cookieparser());
+
 
 // routes
 app.use("/",require("./routes/indexRoutes"))
@@ -32,6 +46,6 @@ app.all("*",(req,res,next)=>{
 app.use(generatedErrors)
 
 app.listen(
-    process.env.Port,console.log(`Server runing at Port ${process.env.Port}` )
+    process.env.PORT,console.log(`Server runing at PORT ${process.env.PORT}` )
 )
 
