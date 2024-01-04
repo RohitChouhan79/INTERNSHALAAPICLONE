@@ -4,7 +4,12 @@ const Errorhandler = require("../utils/ErrorHandle");
 const { sendtokens } = require("../utils/SendToken");
 
 exports.homepage=catchAsyncError(async(req,res,next)=>{
-    res.json({message:"Homepage"});
+    res.json({message:" Secured Homepage"});
+})
+
+exports.currenUser=catchAsyncError(async(req,res,next)=>{
+    const student= await Student.findById(req.id).exec()
+    res.json({student});
 })
 
 exports.studentsignup=catchAsyncError(async(req,res,next)=>{
@@ -29,5 +34,6 @@ exports.studentsignin=catchAsyncError(async(req,res,next)=>{
 })
 
 exports.studentsignout=catchAsyncError(async(req,res,next)=>{
-    
+    res.clearCookie("token");
+    res.json({message:"Succesfully signout"})
 })
