@@ -144,3 +144,140 @@ exports.deleteresposiblities=catchAsyncError(async(req,res,next)=>{
     await student.save()
     res.json({message:" resposiblities deleted"});
 })
+
+// Courses...............................................................................
+exports.addcourses=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    student.resume.courses.push({...req.body,id:uuidv4()})
+    await student.save()
+    res.json({message:"courses added"});
+})
+
+
+exports.editcourses=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    const courseindex=student.resume.courses.findIndex(
+        (i)=>i.id===req.params.courseid
+    );
+    student.resume.courses[courseindex]={
+        ...student.resume.courses[courseindex],
+        ...req.body,
+    }
+    await student.save()
+    res.json({message:" courses updated"});
+})
+
+
+exports.deletecourses=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    const filtercourse=student.resume.courses.filter(
+        (i)=>i.id !== req.params.courseid
+    );
+    student.resume.courses=filtercourse;
+    await student.save()
+    res.json({message:"courses deleted"});
+})
+
+// projects..............................................................................
+
+
+exports.addprojects=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    student.resume.projects.push({...req.body,id:uuidv4()})
+    await student.save()
+    res.json({message:"projects added"});
+})
+
+exports.editprojects=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    const projectindex=student.resume.projects.findIndex(
+        (i)=>i.id===req.params.projectid
+    );
+    student.resume.projects[projectindex]={
+        ...student.resume.projects[projectindex],
+        ...req.body,
+    }
+    await student.save()
+    res.json({message:" projects updated"});
+})
+
+
+exports.deleteprojects=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    const filterproject=student.resume.projects.filter(
+        (i)=>i.id !== req.params.projectid
+    );
+    student.resume.projects=filterproject;
+    await student.save()
+    res.json({message:"projects deleted"});
+})
+
+
+// skills..............................................................................
+
+
+exports.addskills=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    student.resume.skills.push({...req.body,id:uuidv4()})
+    await student.save()
+    res.json({message:"skills added"});
+})
+
+exports.editskills=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    const skillindex=student.resume.skills.findIndex(
+        (i)=>i.id===req.params.skillid
+    );
+    student.resume.skills[skillindex]={
+        ...student.resume.skills[skillindex],
+        ...req.body,
+    }
+    await student.save()
+    res.json({message:" skills updated"});
+})
+
+
+exports.deleteskills=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    const filterskill=student.resume.skills.filter(
+        (i)=>i.id !== req.params.skillid
+    );
+    student.resume.skills=filterskill;
+    await student.save()
+    res.json({message:"skills deleted"});
+})
+
+
+// accomplishments..............................................................................
+
+
+exports.addaccomplishments=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    student.resume.accomplishments.push({...req.body,id:uuidv4()})
+    await student.save()
+    res.json({message:"accomplishments added"});
+})
+
+exports.editaccomplishments=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    const accomindex=student.resume.accomplishments.findIndex(
+        (i)=>i.id===req.params.accomid
+    );
+    student.resume.accomplishments[accomindex]={
+        ...student.resume.accomplishments[accomindex],
+        ...req.body,
+    }
+    await student.save()
+    res.json({message:" accomplishments updated"});
+})
+
+
+exports.deleteaccomplishments=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.id).exec()
+    const filteraccom=student.resume.accomplishments.filter(
+        (i)=>i.id !== req.params.accomid
+    );
+    student.resume.accomplishments=filteraccom;
+    await student.save()
+    res.json({message:"skills deleted"});
+})
