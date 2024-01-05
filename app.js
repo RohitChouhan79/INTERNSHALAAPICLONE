@@ -39,7 +39,9 @@ app.use(fileupload());
 
 
 // routes
-app.use("/",require("./routes/indexRoutes"))
+app.use("/user",require("./routes/indexRoutes"))
+app.use("/resume",require("./routes/resumeRoutes"))
+
 
 // error handling
 const Errorhandler = require("./utils/ErrorHandle");
