@@ -29,7 +29,13 @@ const studentModel=new mongoose.Schema({
         type:String,
         enum:["Male","Female","Others"]
     },
-    avtar:String,
+    avatar:{
+        type:Object,
+        default:{
+            fieldId:"",
+            url:"https://plus.unsplash.com/premium_photo-1676690618005-c6bfc28347b9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
+    },
     email:{
         type:String,
         unique:true,

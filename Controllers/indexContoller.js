@@ -3,6 +3,8 @@ const Student=require("../models/studentModel");
 const Errorhandler = require("../utils/ErrorHandle");
 const { sendtokens } = require("../utils/SendToken");
 const { sendmail } = require("../utils/nodemailer");
+const path=require("path")
+const imagekit=require("../utils/ImageKit").initimagekit()
 
 exports.homepage=catchAsyncError(async(req,res,next)=>{
     res.json({message:" Secured Homepage"});
@@ -90,4 +92,28 @@ exports.studentupdate=catchAsyncError(async(req,res,next)=>{
        
     })
     // sendtokens(student,201,res)
+}) 
+
+
+exports.studentavatar=catchAsyncError(async(req,res,next)=>{
+    const student=await Student.findById(req.params.id).exec()
+    const file=req.files.avatar
+    const modifiedFileName=`resumebuilder-${Date.now()}${path.extname(file.name)}`
+
+    if(student.avatar.fileId!==""){
+        await imagekit.deleteFile(student.avatar.fileId)
+    }
+
+    const {fileId,url}=await imagekit.upload({
+        file:file.data,
+        fileName:modifiedFileName
+    })
+
+    student.avatar={fileId,url}
+    await student.save()    
+    // res.json({image})
+    res.status(200).json({
+        sucess:true,
+        message:"Profile Uploded Succesfully"
+       })
 }) 
