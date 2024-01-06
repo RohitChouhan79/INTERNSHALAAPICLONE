@@ -9,6 +9,9 @@ employeforgetlink,
 employeresetpassword,
 employeupdate,
 employeavatar,
+createinternship,
+readinternship,
+readsingleinternship
  } = require("../Controllers/employeContoller");
 const { isAuthenticated } = require("../middlewares/auth");
 const router=express.Router();
@@ -46,5 +49,20 @@ router.post("/update/:id",isAuthenticated,employeupdate)
 // // post /student/avatat/;studentid
 router.post("/avatar/:id",isAuthenticated,employeavatar)
 
+
+// ...........................................................................
+// .......................internship route....................................
+// ...........................................................................
+
+
+// // post /employe/internship/create
+router.post("/internship/create",isAuthenticated,createinternship)
+
+
+// // post /employe/internship/create
+router.post("/internship/read",isAuthenticated,readinternship)
+
+// // post /employe/internship/create
+router.post("/internship/read/:id",isAuthenticated,readsingleinternship)
 
 module.exports=router; 

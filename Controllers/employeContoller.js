@@ -1,5 +1,6 @@
 const { catchAsyncError } = require("../middlewares/catchAsyncError");
 const Employe=require("../models/employeModel");
+const Internship = require("../models/internshipModel");
 const Errorhandler = require("../utils/ErrorHandle");
 const { sendtokens } = require("../utils/SendToken");
 const { sendmail } = require("../utils/nodemailer");
@@ -117,3 +118,29 @@ exports.employeavatar=catchAsyncError(async(req,res,next)=>{
         message:"Profile Uploded Succesfully"
        })
 }) 
+
+
+// ..................................................................................................................
+// ....................................Internships....................................................................
+// ...................................................................................................................
+
+exports.createinternship=exports.employesignup=catchAsyncError(async(req,res,next)=>{
+    const employe= await Employe.findById(req.id).exec()
+    const internship= await new Internship(req.body).save();
+    employe.internships.push(internship._id);
+    await employe.save()
+    res.status(201).json({sucess:true,internship})
+    
+})
+
+exports.readinternship=catchAsyncError(async(req,res,next)=>{
+    const internships= await Internship.find().exec()
+    res.status(201).json({sucess:true,internships})
+    
+})
+
+exports.readsingleinternship=catchAsyncError(async(req,res,next)=>{
+    const internship= await Internship.findById(req.params.id).exec();
+    res.status(201).json({sucess:true,internship})
+    
+})
