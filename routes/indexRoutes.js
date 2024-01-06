@@ -1,6 +1,14 @@
 const express=require("express");
-const { homepage,currenUser,studentsignup,studentsignin,studentsignout,
-    studentsendmail ,studentforgetlink,studentresetpassword,studentupdate,studentavatar} = require("../Controllers/indexContoller");
+const { homepage,
+    currentUser,
+    studentsignup,
+    studentsignin,
+    studentsignout,
+    studentsendmail ,
+    studentforgetlink,
+    studentresetpassword,
+    studentupdate,
+    studentavatar} = require("../Controllers/indexContoller");
 const { isAuthenticated } = require("../middlewares/auth");
 const router=express.Router();
 
@@ -11,7 +19,7 @@ router.get("/",homepage)
 
 // post /student
 
-router.post("/student",isAuthenticated,currenUser)
+router.post("/student",isAuthenticated,currentUser)
 
 // post /student/Signup
 router.post("/student/Signup",studentsignup)
