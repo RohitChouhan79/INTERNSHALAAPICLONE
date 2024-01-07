@@ -3,6 +3,7 @@ const mongoose=require("mongoose");
 
 
 const jobModel=new mongoose.Schema({
+    students:[{type:mongoose.Schema.Types.ObjectId,ref:"student"}],
     employe:{type:mongoose.Schema.Types.ObjectId,ref:"employe"},
     profile:String,
     skill:String,
@@ -13,7 +14,7 @@ const jobModel=new mongoose.Schema({
     openings:Number,
     description:String,
     preference:String,
-    Salary:Number,
+    salary:Number,
     perks:String,
     assesments:String,
 },{timestamps:true})

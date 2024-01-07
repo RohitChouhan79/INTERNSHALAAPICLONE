@@ -64,7 +64,13 @@ const studentModel=new mongoose.Schema({
     resetPasswordToken:{
         type:Number,
         default:0
-    }
+    },
+    internships:[
+        {type:mongoose.Schema.Types.ObjectId,ref:"internship"}
+    ],
+    jobs:[
+        {type:mongoose.Schema.Types.ObjectId,ref:"job"}
+    ],
     
 },{timestamps:true})
 

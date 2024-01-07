@@ -1,6 +1,7 @@
 const { catchAsyncError } = require("../middlewares/catchAsyncError");
 const Employe=require("../models/employeModel");
 const Internship = require("../models/internshipModel");
+const Job = require("../models/jobModel");
 const Errorhandler = require("../utils/ErrorHandle");
 const { sendtokens } = require("../utils/SendToken");
 const { sendmail } = require("../utils/nodemailer");
@@ -144,5 +145,34 @@ exports.readinternship=catchAsyncError(async(req,res,next)=>{
 exports.readsingleinternship=catchAsyncError(async(req,res,next)=>{
     const internship= await Internship.findById(req.params.id).exec();
     res.status(201).json({sucess:true,internship})
+    
+})
+
+
+// .......................................................................................................
+// ....................................JOBS..............................................................
+// ....................................................................................................
+
+
+exports.createjob = catchAsyncError(async(req,res,next)=>{
+    const employe= await Employe.findById(req.id).exec()
+    const job= await new Job(req.body)
+    employe.jobs.push(job._id);
+    job.employe=employe._id;
+    await job.save()
+    await employe.save()
+    res.status(201).json({sucess:true,job})
+
+})
+
+exports.readjob=catchAsyncError(async(req,res,next)=>{
+    const {jobs}= await Employe.findById(req.id).populate("jobs").exec()
+    res.status(201).json({sucess:true,jobs})
+    
+})
+
+exports.readsinglejob=catchAsyncError(async(req,res,next)=>{
+    const job= await Job.findById(req.params.id).exec();
+    res.status(201).json({sucess:true,job})
     
 })

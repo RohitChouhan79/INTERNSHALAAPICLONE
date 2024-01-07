@@ -1,5 +1,7 @@
 const { catchAsyncError } = require("../middlewares/catchAsyncError");
 const Student=require("../models/studentModel");
+const Internship=require("../models/internshipModel");
+const Job=require("../models/jobModel"); 
 const Errorhandler = require("../utils/ErrorHandle");
 const { sendtokens } = require("../utils/SendToken");
 const { sendmail } = require("../utils/nodemailer");
@@ -116,4 +118,29 @@ exports.studentavatar=catchAsyncError(async(req,res,next)=>{
         sucess:true,
         message:"Profile Uploded Succesfully"
        })
-}) 
+})
+
+// .............................apply internships..................
+
+
+exports.applyinternship=catchAsyncError(async(req,res,next)=>{
+    const student= await Student.findById(req.id).exec()
+    const internship= await Internship.findById(req.params.internshipid).exec() ;
+    student.internships.push(internship._id);
+    internship.students.push(student._id);
+    await student.save()
+    await internship.save()
+    res.json({student,internship});
+})
+
+// .............................apply jobs..................
+
+exports.applyjob=catchAsyncError(async(req,res,next)=>{
+    const student= await Student.findById(req.id).exec()
+    const job= await Job.findById(req.params.jobid).exec() ;
+    student.jobs.push(job._id);
+    job.students.push(student._id);
+    await student.save()
+    await job.save()
+    res.json({student,job});
+})

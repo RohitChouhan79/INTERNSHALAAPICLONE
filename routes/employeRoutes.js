@@ -1,5 +1,6 @@
 const express=require("express");
-const { homepage,
+const { 
+    homepage,
     employesignup,
     employesignin,
 employesignout,
@@ -11,7 +12,10 @@ employeupdate,
 employeavatar,
 createinternship,
 readinternship,
-readsingleinternship
+readsingleinternship,
+createjob,
+readjob,
+readsinglejob,
  } = require("../Controllers/employeContoller");
 const { isAuthenticated } = require("../middlewares/auth");
 const router=express.Router();
@@ -64,5 +68,20 @@ router.post("/internship/read",isAuthenticated,readinternship)
 
 // // post /employe/internship/create
 router.post("/internship/read/:id",isAuthenticated,readsingleinternship)
+
+// ...........................................................................
+// .......................Jobs route....................................
+// ...........................................................................
+
+
+// // post /employe/internship/create
+router.post("/job/create",isAuthenticated,createjob)
+
+
+// // post /employe/internship/create
+router.post("/job/read",isAuthenticated,readjob)
+
+// // post /employe/internship/create
+router.post("/job/read/:id",isAuthenticated,readsinglejob)
 
 module.exports=router; 

@@ -3,6 +3,7 @@ const mongoose=require("mongoose");
 
 
 const internshipModel=new mongoose.Schema({
+    students:[{type:mongoose.Schema.Types.ObjectId,ref:"student"}],
     employe:{type:mongoose.Schema.Types.ObjectId,ref:"employe"}, 
     profile:String,
     skill:String,
