@@ -124,17 +124,19 @@ exports.employeavatar=catchAsyncError(async(req,res,next)=>{
 // ....................................Internships....................................................................
 // ...................................................................................................................
 
-exports.createinternship=exports.employesignup=catchAsyncError(async(req,res,next)=>{
+exports.createinternship = catchAsyncError(async(req,res,next)=>{
     const employe= await Employe.findById(req.id).exec()
-    const internship= await new Internship(req.body).save();
+    const internship= await new Internship(req.body)
     employe.internships.push(internship._id);
+    internship.employe=employe._id;
+    await internship.save()
     await employe.save()
     res.status(201).json({sucess:true,internship})
-    
+
 })
 
 exports.readinternship=catchAsyncError(async(req,res,next)=>{
-    const internships= await Internship.find().exec()
+    const {internships}= await Employe.findById(req.id).populate("internships").exec()
     res.status(201).json({sucess:true,internships})
     
 })

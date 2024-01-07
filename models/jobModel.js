@@ -3,6 +3,7 @@ const mongoose=require("mongoose");
 
 
 const jobModel=new mongoose.Schema({
+    employe:{type:mongoose.Schema.Types.ObjectId,ref:"employe"},
     profile:String,
     skill:String,
     jobtype:{
