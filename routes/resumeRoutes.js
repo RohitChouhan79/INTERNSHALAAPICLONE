@@ -30,81 +30,81 @@ router.post("/delete-education/:eduid",isAuthenticated,deleteeducation);
 // post /add-jobs
 router.post("/add-jobs",isAuthenticated,addjobs);
 
-// post /edit-jobs/:eduid
+// post /edit-jobs/:jobid
 
 router.post("/edit-jobs/:jobid",isAuthenticated,editjobs);
-// post  /delete-education/:eduid
+// post  /delete-education/:jobid
 
 router.post("/delete-jobs/:jobid",isAuthenticated,deletejobs);
 
 // ......................................Internship routes...................
 
-// post /add-jobs
+// post /add-intern
 router.post("/add-intern",isAuthenticated,addinternship);
 
-// post /edit-jobs/:eduid
+// post /edit-intern/:internid
 
 router.post("/edit-intern/:internid",isAuthenticated,editinternship);
-// post  /delete-education/:eduid
+// post  /delete-intern/:internid
 
 router.post("/delete-intern/:internid",isAuthenticated,deleteinternship);
 
 
 // ......................................resposiblities routes...................
 
-// post /add-jobs
+// post /add-respons
 router.post("/add-respons",isAuthenticated,addresposiblities);
 
-// post /edit-jobs/:eduid
+// post /edit-respons/:responsid
 
 router.post("/edit-respons/:responsid",isAuthenticated,editresposiblities);
-// post  /delete-education/:eduid
+// post  /delete-respons/:responsid
 
 router.post("/delete-respons/:responsid",isAuthenticated,deleteresposiblities);
 
 // .................................courses routes................................
-// post /add-jobs
+// post /add-course
 router.post("/add-course",isAuthenticated,addcourses);
 
-// post /edit-jobs/:eduid
+// post /edit-course/:courseid
 
 router.post("/edit-course/:courseid",isAuthenticated,editcourses);
-// post  /delete-education/:eduid
+// post  /delete-course/:courseid
 
 router.post("/delete-course/:courseid",isAuthenticated,deletecourses);
 
 // .................................projects routes................................
-// post /add-jobs
+// post /add-project
 router.post("/add-project",isAuthenticated,addprojects);
 
-// post /edit-jobs/:eduid
+// post /edit-project/:projectid
 
 router.post("/edit-project/:projectid",isAuthenticated,editprojects);
-// post  /delete-education/:eduid
+// post  /delete-project/:projectid
 
 router.post("/delete-project/:projectid",isAuthenticated,deleteprojects);
 
 // ................................skills routes............................
 
-// post /add-jobs
+// post /add-skill
 router.post("/add-skill",isAuthenticated,addskills);
 
-// post /edit-jobs/:eduid
+// post /edit-skill/:skillid
 
 router.post("/edit-skill/:skillid",isAuthenticated,editskills);
-// post  /delete-education/:eduid
+// post  /delete-skill/:skillid
 
 router.post("/delete-skill/:skillid",isAuthenticated,deleteskills);
 
 // .............................accomplishments routes......................
 
-// post /add-jobs
+// post /add-accom
 router.post("/add-accom",isAuthenticated,addaccomplishments);
 
-// post /edit-jobs/:eduid
+// post /edit-accom/:accomid
 
 router.post("/edit-accom/:accomid",isAuthenticated,editaccomplishments);
-// post  /delete-education/:eduid
+// post  /delete-accom/:accomid
 
 router.post("/delete-accom/:accomid",isAuthenticated,deleteaccomplishments);
 

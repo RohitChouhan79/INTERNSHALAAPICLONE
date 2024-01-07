@@ -8,20 +8,27 @@ const { sendmail } = require("../utils/nodemailer");
 const path=require("path")
 const imagekit=require("../utils/ImageKit").initimagekit()
 
+// Export homepage
 exports.homepage=catchAsyncError(async(req,res,next)=>{
     res.json({message:" Secured employe Homepage"});
 })
+
+
+// Export current employe
 
 exports.currentemploye=catchAsyncError(async(req,res,next)=>{
     const employe= await Employe.findById(req.id).exec()
     res.json({employe});
 })
 
+// Export employesignup
 exports.employesignup=catchAsyncError(async(req,res,next)=>{
     const employe= await new Employe(req.body).save();
     // res.status(201).json(employe)
     sendtokens(employe,201,res)
 })
+
+// Export employesignin
 
 exports.employesignin=catchAsyncError(async(req,res,next)=>{
     const employe= await Employe.findOne({email:req.body.email})
@@ -38,10 +45,14 @@ exports.employesignin=catchAsyncError(async(req,res,next)=>{
 
 })
 
+// Export employesignout
+
 exports.employesignout=catchAsyncError(async(req,res,next)=>{
     res.clearCookie("token");
     res.json({message:"Succesfully signout"})
 })
+
+// Export employesendmail
 
 
 exports.employesendmail=catchAsyncError(async(req,res,next)=>{
@@ -56,6 +67,8 @@ exports.employesendmail=catchAsyncError(async(req,res,next)=>{
     await  employe.save()
     res.json({employe,url})
 })
+
+// Export employeforgetlink
 
 exports.employeforgetlink=catchAsyncError(async(req,res,next)=>{
     const employe= await Employe.findById(req.params.id).exec();
@@ -77,6 +90,8 @@ exports.employeforgetlink=catchAsyncError(async(req,res,next)=>{
    })
 })
 
+// Export employeresetpassword
+
 exports.employeresetpassword=catchAsyncError(async(req,res,next)=>{
     const employe= await Employe.findById(req.id).exec();
     employe.password=req.body.password;
@@ -85,6 +100,7 @@ exports.employeresetpassword=catchAsyncError(async(req,res,next)=>{
     sendtokens(employe,200,res) 
 })
 
+// Export employeupdate
 
 exports.employeupdate=catchAsyncError(async(req,res,next)=>{
     await Employe.findByIdAndUpdate(req.params.id,req.body).exec();
@@ -96,6 +112,7 @@ exports.employeupdate=catchAsyncError(async(req,res,next)=>{
     // sendtokens(student,201,res)
 }) 
 
+// Export employevtar
 
 exports.employeavatar=catchAsyncError(async(req,res,next)=>{
     const employe=await Employe.findById(req.params.id).exec()

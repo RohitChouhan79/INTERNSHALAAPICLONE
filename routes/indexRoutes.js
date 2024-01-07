@@ -40,25 +40,25 @@ router.post("/student/Send-mail",studentsendmail)
 // get /student/forget-link/:studentid
 router.get("/student/forget-link/:id",studentforgetlink)
 
-// post /student/reset-password/;studentid
+// post /student/reset-password/:studentid
 router.post("/student/reset-password/:id",isAuthenticated,studentresetpassword)
 
-// post /student/update/;studentid
+// post /student/update/:studentid
 router.post("/student/update/:id",isAuthenticated,studentupdate)
 
-// post /student/avatat/;studentid
+// post /student/avatat/:studentid
 router.post("/student/avatar/:id",isAuthenticated,studentavatar)
 
 // .............................apply internship...................
 
-// post /student/avatat/;studentid
+// post /student/apply/internship/:internshipid
 router.post("/student/apply/internship/:internshipid",isAuthenticated,applyinternship)
 
 
 // ...............................apply jobs........................ 
 
 
-// post /student/avatat/;studentid
+// post /student/apply/job/:jobid
 router.post("/student/apply/job/:jobid",isAuthenticated,applyjob)
 
 

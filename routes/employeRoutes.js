@@ -20,37 +20,37 @@ readsinglejob,
 const { isAuthenticated } = require("../middlewares/auth");
 const router=express.Router();
 
-// Get / Route
+// Get /employe/ Route
 
 router.get("/",homepage)
 
 
-// // post /student
+// // post /employe/currentemploye
 
 router.post("/currentemploye",isAuthenticated,currentemploye)
 
-// post /student/Signup
+// post /employe/Signup
 router.post("/Signup",employesignup)
 
-// post /student/Signin
+// post /employe/Signin
 router.post("/Signin",employesignin)
 
-// post /student/Signout
+// post /employe/Signout
 router.get("/Signout",isAuthenticated,employesignout)
 
-// // post /student/send-mail
+// // post /employe/send-mail
 router.post("/Send-mail",employesendmail)
 
-// // get /student/forget-link/:studentid
+// // get /employe/forget-link/:employeid
 router.get("/forget-link/:id",employeforgetlink)
 
-// // post /student/reset-password/;studentid
+// // post /employe/reset-password/:employeid
 router.post("/reset-password/:id",isAuthenticated,employeresetpassword)
 
-// // post /student/update/;studentid
+// // post /employe/update/:employeid
 router.post("/update/:id",isAuthenticated,employeupdate)
 
-// // post /student/avatat/;studentid
+// // post /employe/avatat/:employeid
 router.post("/avatar/:id",isAuthenticated,employeavatar)
 
 
@@ -63,10 +63,10 @@ router.post("/avatar/:id",isAuthenticated,employeavatar)
 router.post("/internship/create",isAuthenticated,createinternship)
 
 
-// // post /employe/internship/create
+// // post /employe/internship/read
 router.post("/internship/read",isAuthenticated,readinternship)
 
-// // post /employe/internship/create
+// // post /employe/internship/read/:id
 router.post("/internship/read/:id",isAuthenticated,readsingleinternship)
 
 // ...........................................................................
@@ -74,14 +74,14 @@ router.post("/internship/read/:id",isAuthenticated,readsingleinternship)
 // ...........................................................................
 
 
-// // post /employe/internship/create
+// // post /employe/job/create
 router.post("/job/create",isAuthenticated,createjob)
 
 
-// // post /employe/internship/create
+// // post /employe/job/create
 router.post("/job/read",isAuthenticated,readjob)
 
-// // post /employe/internship/create
+// // post /employe/job/create
 router.post("/job/read/:id",isAuthenticated,readsinglejob)
 
 module.exports=router; 
