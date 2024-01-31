@@ -10,6 +10,7 @@ const {
     studentresetpassword,
     studentupdate,
     studentavatar,
+// studentdelete,
 applyinternship,
 applyjob,
 } = require("../Controllers/indexContoller");
@@ -48,6 +49,11 @@ router.post("/student/update/:id",isAuthenticated,studentupdate)
 
 // post /student/avatat/:studentid
 router.post("/student/avatar/:id",isAuthenticated,studentavatar)
+
+
+
+// router.post("/student/delete",isAuthenticated,studentdelete)
+
 
 // .............................apply internship...................
 

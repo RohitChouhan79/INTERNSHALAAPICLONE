@@ -120,6 +120,14 @@ exports.studentavatar=catchAsyncError(async(req,res,next)=>{
        })
 })
 
+// exports.studentdelete=catchAsyncError(async(req,res,next)=>{
+//     const student=await Student.findById(req.id).exec();
+//     student.internships.forEach
+//     // const student= await Student.findByIdAndDelete(req.id).exec();
+//     // const internship = await Internship.findOneAndDelete()
+//     res.json({student});
+// })
+
 // .............................apply internships..................
 
 
